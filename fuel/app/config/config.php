@@ -10,10 +10,6 @@
  * @link       http://fuelphp.com
  */
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
 return array(    
     /**
      * base_url - The base URL of the application.
