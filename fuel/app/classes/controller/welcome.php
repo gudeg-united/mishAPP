@@ -31,7 +31,9 @@ class Controller_Welcome extends Controller_Base
     public function action_index()
     {
         $buttons = Model_Event::find('all');
-        return Response::forge(View::forge('welcome/index', array('buttons' => $buttons)));
+        
+        $this->template->title = "Tips";
+		$this->template->content = View::forge('welcome/index', array('buttons' => $buttons));
     }
 
     /**
