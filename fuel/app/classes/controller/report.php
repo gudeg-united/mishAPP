@@ -38,7 +38,13 @@ class Controller_Report extends Controller_Base
         $get = Input::get(array('long', 'lat', 'type'));
 
         $new = Model_Report::forge();
+        $new->longitude = $get['long'];
+        $new->latitude = $get['lat'];
+        $new->event_id = $get['type'];
         $new->uid = $this->getUserUuid();
-        $new->save();        
+
+        $new->save();
+
+        Response::redirect('/maps');        
     }
 }
