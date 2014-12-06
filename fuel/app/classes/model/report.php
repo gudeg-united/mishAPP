@@ -6,6 +6,7 @@ class Model_Report extends \Orm\Model
         'long',
         'lat',
         'uid',
+        'event_id',
         'created_at',
     );
 
