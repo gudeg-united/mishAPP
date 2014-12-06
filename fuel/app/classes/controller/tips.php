@@ -1,5 +1,5 @@
 <?php
-class Controller_Tips extends Controller_Template
+class Controller_Tips extends Controller_Base
 {
 
 	public function action_index()
