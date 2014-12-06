@@ -23,15 +23,16 @@ class Controller_Base extends Controller_Template
 
         $current_uuid = Cookie::get($this->user_cookie);
 
-        $uuid = null;
+        if (empty($current_uuid)) {
+            try {
+                // Generate a version 5 (name-based and hashed with SHA1) UUID object
+                $uuid = Uuid::uuid5(Uuid::NAMESPACE_DNS, 'gudeg-united');
+            } catch (UnsatisfiedDependencyException $e) {
+                $uuid = null;
+            }            
 
-        try {
-            // Generate a version 5 (name-based and hashed with SHA1) UUID object
-            $uuid = Uuid::uuid5(Uuid::NAMESPACE_DNS, 'gudeg-united');
-        } catch (UnsatisfiedDependencyException $e) {}
-
-        if (empty($current_uuid) && !empty($uuid))
             Cookie::set($this->user_cookie, $uuid);
+        }    
 
         // Set user uuid
         $this->user_uuid = Cookie::get($this->user_cookie);
