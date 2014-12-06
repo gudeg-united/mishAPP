@@ -3,8 +3,8 @@ class Model_Report extends \Orm\Model
 {
     protected static $_properties = array(
         'id',
-        'long',
-        'lat',
+        'longitude',
+        'latitude',
         'uid',
         'event_id',
         'created_at',
