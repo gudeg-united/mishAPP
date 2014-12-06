@@ -45,7 +45,8 @@ class Controller_Admin_Tips extends Controller_Admin
 			{
 				$tip = Model_Tip::forge(array(
 					'title' => Input::post('title'),
-					'event_id' => Input::post('event_id'),
+                    'object' => Input::post('object'),
+					'object_id' => Input::post('object_id'),
 					'content' => Input::post('content'),
 				));
 
@@ -82,7 +83,8 @@ class Controller_Admin_Tips extends Controller_Admin
 		if ($val->run())
 		{
 			$tip->title = Input::post('title');
-			$tip->event_id = Input::post('event_id');
+            $tip->object = Input::post('object');
+			$tip->object_id = Input::post('object_id');
 			$tip->content = Input::post('content');
 
 			if ($tip->save())
@@ -103,7 +105,8 @@ class Controller_Admin_Tips extends Controller_Admin
 			if (Input::method() == 'POST')
 			{
 				$tip->title = $val->validated('title');
-				$tip->event_id = $val->validated('event_id');
+                $tip->object = $val->validated('object');
+				$tip->object_id = $val->validated('object_id');
 				$tip->content = $val->validated('content');
 
 				Session::set_flash('error', $val->error());
