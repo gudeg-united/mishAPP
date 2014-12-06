@@ -2,9 +2,21 @@
 class Controller_Admin_Tips extends Controller_Admin
 {
 
+    private function event($show = "name",  $events = array())
+    {
+        if(is_array($events)){
+            foreach($events as $event){
+                return $event->{$show};
+            }
+        }
+    }
+
 	public function action_index()
 	{
 		$data['tips'] = Model_Tip::find('all');
+        $data['event'] = function($show = "name", $events = array()){
+            return $this->event($show, $events);
+        };
 		$this->template->title = "Tips";
 		$this->template->content = View::forge('admin/tips/index', $data);
 
@@ -13,6 +25,9 @@ class Controller_Admin_Tips extends Controller_Admin
 	public function action_view($id = null)
 	{
 		$data['tip'] = Model_Tip::find($id);
+        $data['event'] = function($show = "name", $events = array()){
+            return $this->event($show, $events);
+        };
 
 		$this->template->title = "Tip";
 		$this->template->content = View::forge('admin/tips/view', $data);
@@ -21,6 +36,7 @@ class Controller_Admin_Tips extends Controller_Admin
 
 	public function action_create()
 	{
+        $view = View::forge('admin/tips/create');
 		if (Input::method() == 'POST')
 		{
 			$val = Model_Tip::validate('create');
@@ -29,7 +45,7 @@ class Controller_Admin_Tips extends Controller_Admin
 			{
 				$tip = Model_Tip::forge(array(
 					'title' => Input::post('title'),
-					'event' => Input::post('event'),
+					'event_id' => Input::post('event_id'),
 					'content' => Input::post('content'),
 				));
 
@@ -51,6 +67,7 @@ class Controller_Admin_Tips extends Controller_Admin
 			}
 		}
 
+        $view->set_global('events', Arr::assoc_to_keyval(Model_Event::find('all'), 'id', 'name'));
 		$this->template->title = "Tips";
 		$this->template->content = View::forge('admin/tips/create');
 
@@ -60,11 +77,12 @@ class Controller_Admin_Tips extends Controller_Admin
 	{
 		$tip = Model_Tip::find($id);
 		$val = Model_Tip::validate('edit');
+        $view = View::forge('admin/tips/edit');
 
 		if ($val->run())
 		{
 			$tip->title = Input::post('title');
-			$tip->event = Input::post('event');
+			$tip->event_id = Input::post('event_id');
 			$tip->content = Input::post('content');
 
 			if ($tip->save())
@@ -85,7 +103,7 @@ class Controller_Admin_Tips extends Controller_Admin
 			if (Input::method() == 'POST')
 			{
 				$tip->title = $val->validated('title');
-				$tip->event = $val->validated('event');
+				$tip->event_id = $val->validated('event_id');
 				$tip->content = $val->validated('content');
 
 				Session::set_flash('error', $val->error());
@@ -94,8 +112,9 @@ class Controller_Admin_Tips extends Controller_Admin
 			$this->template->set_global('tip', $tip, false);
 		}
 
+        $view->set_global('events', Arr::assoc_to_keyval(Model_Event::find('all'), 'id', 'name'));
 		$this->template->title = "Tips";
-		$this->template->content = View::forge('admin/tips/edit');
+		$this->template->content = $view;
 
 	}
 
