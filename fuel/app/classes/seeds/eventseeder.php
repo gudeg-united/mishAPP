@@ -11,8 +11,10 @@ class EventSeeder
         echo "\nSeeding Events:";
         echo "\n------------------------";
         // Call separated methods for organization
-        self::addDefaultEvents();
-
+        $data = \Model_Event::find('all');
+        if (empty($data)) {
+            self::addDefaultEvents();
+        }
     }
     public static function addDefaultEvents()
     {
