@@ -34,7 +34,9 @@ desktop.ini
 
 # db configs
 /fuel/app/config/development/db.php
+/fuel/app/config/development/migrations.php
 /fuel/app/config/production/db.php
 /fuel/app/config/staging/db.php
 /fuel/app/config/test/db.php
+
 
