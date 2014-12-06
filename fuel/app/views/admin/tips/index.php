@@ -11,10 +11,11 @@
 		</tr>
 	</thead>
 	<tbody>
-<?php foreach ($tips as $item): ?>		<tr>
+<?php foreach ($tips as $item): ?>		
+        <tr>
 
-			<td><?php echo $item->title; ?></td>
-			<td><?php echo $item->event; ?></td>
+			<td><?php echo $item->title; ?></td>           
+            <td><?php echo $event("name", $item->events); ?></td>
 			<td><?php echo $item->content; ?></td>
 			<td>
 				<?php echo Html::anchor('admin/tips/view/'.$item->id, 'View'); ?> |
