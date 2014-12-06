@@ -2,13 +2,20 @@
 
 <p>
 	<strong>Title:</strong>
-	<?php echo $tip->title; ?></p>
+	<?php echo $tip->title; ?>
+</p>
+<p>
+	<strong>Object:</strong>
+	<?php echo $tip->object; ?>
+</p>
 <p>
 	<strong>Event:</strong>
-    <?php echo $event('name', $tip->events); ?></p>
+    <?php echo $event('name', $tip->events); ?>
+</p>
 <p>
 	<strong>Content:</strong>
-	<?php echo $tip->content; ?></p>
+	<?php echo $tip->content; ?>
+</p>
 
 <?php echo Html::anchor('admin/tips/edit/'.$tip->id, 'Edit'); ?> |
 <?php echo Html::anchor('admin/tips', 'Back'); ?>

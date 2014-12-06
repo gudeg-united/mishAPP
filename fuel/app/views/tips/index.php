@@ -14,7 +14,7 @@
 <?php foreach ($tips as $item): ?>		<tr>
 
 			<td><?php echo $item->title; ?></td>
-			<td><?php echo $item->event; ?></td>
+            <td><?php echo $event("name", $item->events); ?></td>
 			<td><?php echo $item->content; ?></td>
 			<td>
 				<div class="btn-toolbar">
