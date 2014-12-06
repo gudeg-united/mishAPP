@@ -272,7 +272,7 @@ return array(
         'packages'  => array(
         	'auth',
         	'orm',
-        	'fuel-db-seeder',
+        	// 'fuel-db-seeder',
         ),
 
         /**
