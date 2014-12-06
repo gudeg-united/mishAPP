@@ -6,7 +6,10 @@ return array(
     array(
       'default' => 
       array(
-        0 => '001_create_tips',
+        0 => '002_create_users',
+        1 => '003_create_events',
+        2 => '004_create_report_table',
+        3 => '005_create_tips',
       ),
     ),
     'module' => 
