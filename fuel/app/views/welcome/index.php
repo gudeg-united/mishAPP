@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>FuelPHP Framework</title>
     <?php echo Asset::css('bootstrap.css'); ?>
+    <?php echo Asset::js(array('all.js', 'http://maps.google.com/maps/api/js?sensor=false&amp;amp;language=en', 'gmap3.js', 'site.js', 'main.js')); ?>
     <style>
         #logo{
             display: block;
@@ -41,12 +42,17 @@
             <p>Please report what kind disaster that happen around you.</p>
         </div>
         <div class="row">
-            <p>
+            <p id="buttons">
+                <input type="hidden" value="" id="latitude">
+                <input type="hidden" value="" id="longitude">
                 <?php if (!empty($buttons)) : ?>
                     <?php foreach ($buttons as $button) : ?>
-                        <a class="btn btn-primary btn-lg" href="<?php echo Uri::create('report/disaster', array('type' => $button->id), array('type' => ':type')); ?>"><?php echo $button->name; ?></a>        
+                        <a class="btn btn-primary btn-lg report-disaster" href="<?php echo Uri::create('report/disaster', array('type' => $button->id), array('type' => ':type')); ?>"><?php echo $button->name; ?></a>        
                     <?php endforeach; ?>
                 <?php endif; ?>
+            </p>
+            <p id="messageButtons">
+                Getting your location.
             </p>
         </div>
         <hr/>

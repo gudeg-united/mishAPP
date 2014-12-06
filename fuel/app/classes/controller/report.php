@@ -35,8 +35,10 @@ class Controller_Report extends Controller_Base
     
     public function action_disaster()
     {
-        // $new = Model_Report::forge();
-        // $new->uid = 'something';
-        // $new->save();        
+        $get = Input::get(array('long', 'lat', 'type'));
+
+        $new = Model_Report::forge();
+        $new->uid = $this->getUserUuid();
+        $new->save();        
     }
 }
