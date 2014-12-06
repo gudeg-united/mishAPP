@@ -4,6 +4,7 @@ class Model_Event extends \Orm\Model
 	protected static $_properties = array(
 		'id',
 		'name',
+		'status',
 		'created_at',
 		'updated_at',
 	);
@@ -23,6 +24,7 @@ class Model_Event extends \Orm\Model
 	{
 		$val = Validation::forge($factory);
 		$val->add_field('name', 'Name', 'required|max_length[255]');
+		$val->add_field('status', 'Status', 'required');
 
 		return $val;
 	}

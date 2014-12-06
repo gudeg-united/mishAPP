@@ -1,10 +1,13 @@
 <?php
 class Controller_Admin_Events extends Controller_Admin
 {
+    public $status = array(0 => 'disable', 1 => 'enable');
 
 	public function action_index()
 	{
 		$data['events'] = Model_Event::find('all');
+        $data['status'] = $this->status;
+
 		$this->template->title = "Events";
 		$this->template->content = View::forge('admin/events/index', $data);
 
@@ -13,6 +16,7 @@ class Controller_Admin_Events extends Controller_Admin
 	public function action_view($id = null)
 	{
 		$data['event'] = Model_Event::find($id);
+        $data['status'] = $this->status;
 
 		$this->template->title = "Event";
 		$this->template->content = View::forge('admin/events/view', $data);
@@ -21,7 +25,9 @@ class Controller_Admin_Events extends Controller_Admin
 
 	public function action_create()
 	{
-		if (Input::method() == 'POST')
+        $view = View::forge('admin/events/create');
+		
+        if (Input::method() == 'POST')
 		{
 			$val = Model_Event::validate('create');
 
@@ -29,6 +35,7 @@ class Controller_Admin_Events extends Controller_Admin
 			{
 				$event = Model_Event::forge(array(
 					'name' => Input::post('name'),
+					'status' => Input::post('status'),
 				));
 
 				if ($event and $event->save())
@@ -49,8 +56,9 @@ class Controller_Admin_Events extends Controller_Admin
 			}
 		}
 
+        $view->set_global('status', $this->status);
 		$this->template->title = "Events";
-		$this->template->content = View::forge('admin/events/create');
+		$this->template->content = $view;
 
 	}
 
@@ -58,10 +66,12 @@ class Controller_Admin_Events extends Controller_Admin
 	{
 		$event = Model_Event::find($id);
 		$val = Model_Event::validate('edit');
+        $view = View::forge('admin/events/edit');
 
 		if ($val->run())
 		{
 			$event->name = Input::post('name');
+			$event->status = Input::post('status');
 
 			if ($event->save())
 			{
@@ -81,6 +91,7 @@ class Controller_Admin_Events extends Controller_Admin
 			if (Input::method() == 'POST')
 			{
 				$event->name = $val->validated('name');
+				$event->status = $val->validated('status');
 
 				Session::set_flash('error', $val->error());
 			}
@@ -88,8 +99,9 @@ class Controller_Admin_Events extends Controller_Admin
 			$this->template->set_global('event', $event, false);
 		}
 
+        $view->set_global('status', $this->status);
 		$this->template->title = "Events";
-		$this->template->content = View::forge('admin/events/edit');
+		$this->template->content = $view;
 
 	}
 
