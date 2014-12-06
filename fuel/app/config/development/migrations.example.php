@@ -1,10 +1,10 @@
 <?php
 return array(
-  'version' => 
+  'version' =>
   array(
-    'app' => 
+    'app' =>
     array(
-      'default' => 
+      'default' =>
       array(
         0 => '002_create_users',
         1 => '003_create_events',
@@ -12,10 +12,10 @@ return array(
         3 => '005_create_tips',
       ),
     ),
-    'module' => 
+    'module' =>
     array(
     ),
-    'package' => 
+    'package' =>
     array(
     ),
   ),
