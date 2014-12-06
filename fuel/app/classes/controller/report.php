@@ -19,7 +19,7 @@
  * @package  app
  * @extends  Controller
  */
-class Controller_Report extends Controller
+class Controller_Report extends Controller_Base
 {
 
     /**
@@ -30,11 +30,13 @@ class Controller_Report extends Controller
      */
     public function action_index()
     {
-        return Response::forge(View::forge('report/index'));
+        Response::redirect('/');
     }
     
     public function action_disaster()
     {
-        return Response::forge(View::forge('report/index'));
+        // $new = Model_Report::forge();
+        // $new->uid = 'something';
+        // $new->save();        
     }
 }
