@@ -15,6 +15,7 @@
         <tr>
 
 			<td><?php echo $item->title; ?></td>           
+            <td><?php echo $item->object; ?></td>
             <td><?php echo $event("name", $item->events); ?></td>
 			<td><?php echo $item->content; ?></td>
 			<td>
