@@ -272,7 +272,6 @@ return array(
          * );
          */
         'packages'  => array(
-            'pgsql',
         ),
 
         /**
