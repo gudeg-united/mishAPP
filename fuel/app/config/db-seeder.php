@@ -23,7 +23,7 @@ return array(
      * in this example, UserSeeder will be called after PageSeeder
      */
     'order' => array(
-        'EventSeeder', #example
-        // 'UserSeeder'  #example
+        'EventSeeder',
+        'ReportSeeder',
     ),
 );
