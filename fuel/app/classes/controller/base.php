@@ -21,6 +21,29 @@ class Controller_Base extends Controller_Template
     {
         parent::before();
 
+        $this->setUserUuid();
+
+        // Set a global variable so views can use it
+        View::set_global('user_uuid', $this->user_uuid);
+    }
+
+    /**
+     * Get current user uuid
+     * @return string
+     */
+    public function getUserUuid()
+    {
+        if (empty($this->user_uuid))
+            $this->user_uuid = $this->setUserUuid();
+
+        return $this->user_uuid;
+    }
+
+    /**
+     * Set user uuid
+     */
+    public function setUserUuid()
+    {
         $current_uuid = Cookie::get($this->user_cookie);
 
         if (empty($current_uuid)) {
@@ -37,17 +60,6 @@ class Controller_Base extends Controller_Template
         // Set user uuid
         $this->user_uuid = Cookie::get($this->user_cookie);
 
-        // Set a global variable so views can use it
-        View::set_global('user_uuid', $this->user_uuid);
-
-        // Assign current_user to the instance so controllers can use it
-        $this->current_user = Auth::check() ? 
-            (Config::get('auth.driver', 'Simpleauth') == 'Ormauth' ? 
-             Model\Auth_User::find_by_username(Auth::get_screen_name()) : 
-             Model_User::find_by_username(Auth::get_screen_name()))
-            : null;
-                                               
-        View::set_global('current_user', $this->current_user);
+        return $this->user_uuid;
     }
-
 }
