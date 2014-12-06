@@ -42,14 +42,11 @@
         </div>
         <div class="row">
             <p>
-                <a class="btn btn-primary btn-lg" href="<?php echo Uri::create('report/disaster', array('type' => 'earthquake'), array('type' => ':type')); ?>">Earthquake</a>
-                <a class="btn btn-primary btn-lg" href="<?php echo Uri::create('report/disaster', array('type' => 'flood'), array('type' => ':type')); ?>">Flood</a>
-                <a class="btn btn-primary btn-lg" href="<?php echo Uri::create('report/disaster', array('type' => 'hurricane'), array('type' => ':type')); ?>">Hurricane</a>
-                <a class="btn btn-primary btn-lg" href="<?php echo Uri::create('report/disaster', array('type' => 'nuclear'), array('type' => ':type')); ?>">Nuclear</a>
-                <a class="btn btn-primary btn-lg" href="<?php echo Uri::create('report/disaster', array('type' => 'tornado'), array('type' => ':type')); ?>">Tornado</a>
-                <a class="btn btn-primary btn-lg" href="<?php echo Uri::create('report/disaster', array('type' => 'tsunami'), array('type' => ':type')); ?>">Tsunami</a>
-                <a class="btn btn-primary btn-lg" href="<?php echo Uri::create('report/disaster', array('type' => 'volcano'), array('type' => ':type')); ?>">Volcano</a>
-                <a class="btn btn-primary btn-lg" href="<?php echo Uri::create('report/disaster', array('type' => 'wildfire'), array('type' => ':type')); ?>">Wildfire</a>
+                <?php if (!empty($buttons)) : ?>
+                    <?php foreach ($buttons as $button) : ?>
+                        <a class="btn btn-primary btn-lg" href="<?php echo Uri::create('report/disaster', array('type' => $button->id), array('type' => ':type')); ?>"><?php echo $button->name; ?></a>        
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </p>
         </div>
         <hr/>
