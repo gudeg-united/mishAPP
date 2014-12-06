@@ -272,6 +272,7 @@ return array(
 		 * );
 		 */
 		'packages'  => array(
+            'auth',
 			'orm',
 		),
 
