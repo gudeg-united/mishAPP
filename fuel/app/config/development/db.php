@@ -4,11 +4,17 @@
  */
 
 return array(
-	'default' => array(
-		'connection'  => array(
-			'dsn'        => 'mysql:host=localhost;dbname=fuel_dev',
-			'username'   => 'root',
-			'password'   => 'root',
-		),
-	),
+    'default' => array(
+        'type'           => 'mysql',
+        'connection'  => array(
+            'hostname'       => 'localhost',
+            'port'           => '3306',
+            'database'       => 'mishapp_web',
+            'username'       => 'root',
+            'password'       => 'root',
+            'persistent'     => false,
+            'compress'       => false,
+        ),
+        'charset'        => 'utf8',
+    ),
 );
