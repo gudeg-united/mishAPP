@@ -32,7 +32,11 @@ class Controller_Report extends Controller_Base
     {
         Response::redirect('/');
     }
-    
+
+    /**
+     * Report disaster as a crowd source
+     * @return void
+     */
     public function action_disaster()
     {
         $get = Input::get(array('long', 'lat', 'type'));
@@ -53,5 +57,28 @@ class Controller_Report extends Controller_Base
         }
         
         Response::redirect('/maps');        
+    }
+
+    public function action_verifying()
+    {
+        $hour_ago = strtotime('-1 hour');
+
+        $reports = Model_Report::find('all', array(
+            'where' => array(
+                array('created_at', ' >= ', date('Y-m-d H:i:s', $hour_ago)),
+            ),
+            'order_by' => array('created_at' => 'desc'),
+        ));     
+
+        if (!empty($reports)) {
+            foreach ($reports as $report) {
+                $headers = array('Accept' => 'application/json');
+                $request = Requests::get('http://192.168.0.106:5000/disasters/verify?lat=' . $report->latitude . '&lon=' . $report->longitude . '&radius=5', $headers);
+
+                if ($request->status_code < 202) {
+                    $report->setAsVerified();
+                }
+            }
+        }
     }
 }
