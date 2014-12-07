@@ -1,7 +1,7 @@
 <?php
 class Controller_Admin_Events extends Controller_Admin
 {
-    public $status = array(0 => 'disable', 1 => 'enable');
+    public $status = array(1 => 'enable', 0 => 'disable');
 
 	public function action_index()
 	{
@@ -35,7 +35,7 @@ class Controller_Admin_Events extends Controller_Admin
 			{
 				$event = Model_Event::forge(array(
 					'name' => Input::post('name'),
-					'status' => Input::post('status'),
+					'is_available' => Input::post('is_available'),
 				));
 
 				if ($event and $event->save())
@@ -71,7 +71,7 @@ class Controller_Admin_Events extends Controller_Admin
 		if ($val->run())
 		{
 			$event->name = Input::post('name');
-			$event->status = Input::post('status');
+			$event->is_available = Input::post('is_available');
 
 			if ($event->save())
 			{
@@ -91,7 +91,7 @@ class Controller_Admin_Events extends Controller_Admin
 			if (Input::method() == 'POST')
 			{
 				$event->name = $val->validated('name');
-				$event->status = $val->validated('status');
+				$event->is_available = $val->validated('is_available');
 
 				Session::set_flash('error', $val->error());
 			}

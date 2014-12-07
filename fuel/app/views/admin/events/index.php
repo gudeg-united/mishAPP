@@ -13,7 +13,7 @@
 <?php foreach ($events as $item): ?>		<tr>
 
 			<td><?php echo $item->name; ?></td>
-			<td><?php echo $status[$item->status]; ?></td>
+			<td><?php echo $status[$item->is_available]; ?></td>
 			<td>
 				<?php echo Html::anchor('admin/events/view/'.$item->id, 'View'); ?> |
 				<?php echo Html::anchor('admin/events/edit/'.$item->id, 'Edit'); ?> |
