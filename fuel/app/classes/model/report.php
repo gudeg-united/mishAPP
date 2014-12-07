@@ -1,6 +1,8 @@
 <?php
 class Model_Report extends \Orm\Model
 {
+    const MIN_NEAR_BY_REPORT = 5;
+
     protected static $_properties = array(
         'id',
         'longitude',
@@ -8,13 +10,14 @@ class Model_Report extends \Orm\Model
         'uid',
         'event_id',
         'created_at',
+        'is_valid',
     );
 
     protected static $_observers = array(
         'Orm\Observer_CreatedAt' => array(
-            'events' => array('before_insert'),
+            'events' => array('before_insert', 'after_save'),
             'mysql_timestamp' => true,
-        ),
+        )     
     );
 
     public static function validate($factory)
@@ -47,13 +50,24 @@ class Model_Report extends \Orm\Model
                     WHERE
                     ACOS( SIN( RADIANS( `latitude` ) ) * SIN( RADIANS(:latitude) ) + COS( RADIANS( `latitude` ) )
                     * COS( RADIANS(:latitude)) * COS( RADIANS( `longitude` ) - RADIANS(:longitude)) ) * 6380 < :radius
+                    AND event_id = :event
                     ORDER BY `distance`';
 
         $reports = DB::query($query)->param('longitude', $longitude)
                                   ->param('latitude', $latitude)
                                   ->param('radius', $radius)
+                                  ->param('event', $record->event_id)
                                   ->execute();
 
         return $reports;
+    }
+
+    /**
+     * Set report as valid
+     */
+    public function setAsValid()
+    {
+        $this->is_valid = 1;
+        return $this->save();
     }
 }

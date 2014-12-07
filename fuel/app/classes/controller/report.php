@@ -45,6 +45,14 @@ class Controller_Report extends Controller_Base
 
         $new->save();
 
+        $new = Model_Report::find_by_id(40);
+
+        $nearBy = $new->findByRadius($new);
+
+        if (count($nearBy) >= Model_Report::MIN_NEAR_BY_REPORT) {
+            # What should I do after this is verified
+        }
+        
         Response::redirect('/maps');        
     }
 }
