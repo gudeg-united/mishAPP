@@ -1,3 +1,19 @@
+<?php
+   $active = function($button){
+    $data = new \stdClass;
+    if($button->is_available){
+        $data->class = "enabled";
+        $data->href = Uri::create('report/disaster', array('type' => $button->id), array('type' => ':type'));
+    }
+    else{
+        $data->class = "disabled";
+        $data->href = "javascript:;";
+    };
+
+    return $data;
+};
+?>
+
 <div class="row">
   <div class="columns">
     <div id="logo">
@@ -11,8 +27,8 @@
       <input type="hidden" value="" id="longitude">    
       <?php if (!empty($buttons)) : ?>
       <?php foreach ($buttons as $button) : ?>
-      <li><a title="<?php echo $button->name; ?>" class="disabled report-disaster"
-             href="<?php echo Uri::create('report/disaster', array('type' => $button->id), array('type' => ':type')); ?>">
+      <li><a title="<?php echo $button->name; ?>" class="<?php echo $active($button)->class; ?> report-disaster"
+             href="<?php echo $active($button)->href; ?>">
           <img src="/assets/img/icon-earthquake.png" />
       </a></li>        
       <?php endforeach; ?>
