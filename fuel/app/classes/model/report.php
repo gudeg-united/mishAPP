@@ -12,13 +12,14 @@ class Model_Report extends \Orm\Model
         'created_at',
         'is_valid',
         'is_verify',
+        'location',
     );
 
     protected static $_observers = array(
         'Orm\Observer_CreatedAt' => array(
             'events' => array('before_insert', 'after_save'),
             'mysql_timestamp' => true,
-        )     
+        )
     );
 
     public static function validate($factory)
@@ -53,7 +54,7 @@ class Model_Report extends \Orm\Model
      */
     public function findNearByReport($longitude, $latitude, $radius, $event_id)
     {
-        $query = 'SELECT 
+        $query = 'SELECT
                     id,
                     event_id,
                     longitude,

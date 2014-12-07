@@ -31,6 +31,8 @@ class ReportSeeder
                     'latitude' => $faker->latitude,
                     'longitude' => $faker->longitude,
                     'event_id' => $event->id,
+                    'location' => $faker->address,
+                    'is_verify' => true
                 ));
                 $report->save();
             }
