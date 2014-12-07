@@ -54,7 +54,11 @@ class Controller_Report extends Controller_Base
         $nearBy = $new->findByRadius($new);
 
         if (count($nearBy) >= Model_Report::MIN_NEAR_BY_REPORT) {
-            # What should I do after this is verified
+            foreach ($nearBy as $value) {
+                $report = Model_Report::find_by_id($value['id']);
+                $report->setAsValid();
+                $this->verifyingReport($report);
+            }
         }
         
         Response::redirect('/maps');        
@@ -73,13 +77,18 @@ class Controller_Report extends Controller_Base
 
         if (!empty($reports)) {
             foreach ($reports as $report) {
-                $headers = array('Accept' => 'application/json');
-                $request = Requests::get(Config::get('mishapp.api_host') . '/disasters/verify?lat=' . $report->latitude . '&lon=' . $report->longitude . '&radius=5', $headers);
-
-                if ($request->status_code < 202) {
-                    $report->setAsVerified();
-                }
+                $this->verifyingReport($report);
             }
+        }
+    }
+
+    public function verifyingReport($report)
+    {
+        $headers = array('Accept' => 'application/json');
+        $request = Requests::get(Config::get('mishapp.api_host') . '/disasters/verify?lat=' . $report->latitude . '&lon=' . $report->longitude . '&radius=' . Model_Report::MIN_NEAR_BY_REPORT, $headers);
+
+        if ($request->status_code < 202) {
+            $report->setAsVerified();
         }
     }
 }

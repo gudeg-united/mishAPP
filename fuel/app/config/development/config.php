@@ -11,7 +11,7 @@
  */
 
 return array(
-    'mishapp' => array(
-        'api_host' => 'http://192.168.0.106:5000'
-    )
+    // 'mishapp' => array(
+    //     'api_host' => 'http://192.168.0.106:5000'
+    // )
 );
