@@ -141,7 +141,8 @@
         "rhumsaa/uuid": "~2.8",
         "fzaninotto/faker": "1.4.0",
         "willdurand/geocoder": "2.8.0",
-        "rmccue/requests": ">=1.0"
+        "rmccue/requests": ">=1.0",
+        "pubnub/pubnub": "3.5.*"
     },
     "suggest": {
         "dwoo/dwoo" : "Allow Dwoo templating with the Parser package",
