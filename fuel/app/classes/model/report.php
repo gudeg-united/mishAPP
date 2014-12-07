@@ -11,6 +11,7 @@ class Model_Report extends \Orm\Model
         'event_id',
         'created_at',
         'is_valid',
+        'is_verify',
     );
 
     protected static $_observers = array(
@@ -68,6 +69,15 @@ class Model_Report extends \Orm\Model
     public function setAsValid()
     {
         $this->is_valid = 1;
+        return $this->save();
+    }
+
+    /**
+     * Set report as valid
+     */
+    public function setAsVerified()
+    {
+        $this->is_verify = 1;
         return $this->save();
     }
 }
