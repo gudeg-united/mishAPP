@@ -18,10 +18,20 @@
 	    <li><a href="http://koding.com">Koding</a></li>
         <li><a href="http://pubnub.com">Pubnub</a></li>
         <li><a href="http://nginx.org">Nginx</a></li>
-        <li><a href="http://python.org">Python</a></li>
-        <li><a href="http://php.net">PHP</a></li>
+        <li><a href="http://flask.pocoo.org/">Flask</a></li>
+        <li><a href="http://fuelphp.com/">FuelPHP</a></li>
         <li><a href="http://mongodb.org">MongoDB</a></li>
         <li><a href="http://mysql.com">MySql</a></li>
+        <li><a href="http://google.com">Google</a></li>
+        <li><a href="http://github.com">Github</a></li>
+        <li><a href="http://slack.com">Slack</a></li>
+        <li><a href="http://middlemanapp.com/">Middleman</a></li>
+        <li><a href="http://jquery.com/">JQuery</a></li>
+        <li><a href="http://sass-lang.com/">Sass</a></li>
+        <li><a href="http://middlemanapp.com/">Middleman</a></li>
+        <li><a href="http://www.usgs.gov/">USGS</a></li>
+        <li><a href="http://gdacs.org/">GDACS</a></li>
+
       </ul>
     </div>
   </div>
