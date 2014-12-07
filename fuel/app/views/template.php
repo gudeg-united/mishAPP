@@ -34,5 +34,6 @@
     <?php echo Asset::js('all.js'); ?>
     <?php echo Asset::js('gmap3.js'); ?>
     <?php echo Asset::js('site.js'); ?>
+    <?php echo Asset::js('main.js'); ?>
 </body>
 </html>
