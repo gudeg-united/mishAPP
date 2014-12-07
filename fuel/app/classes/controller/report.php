@@ -73,7 +73,7 @@ class Controller_Report extends Controller_Base
         if (!empty($reports)) {
             foreach ($reports as $report) {
                 $headers = array('Accept' => 'application/json');
-                $request = Requests::get('http://192.168.0.106:5000/disasters/verify?lat=' . $report->latitude . '&lon=' . $report->longitude . '&radius=5', $headers);
+                $request = Requests::get(Config::get('mishapp.api_host') . '/disasters/verify?lat=' . $report->latitude . '&lon=' . $report->longitude . '&radius=5', $headers);
 
                 if ($request->status_code < 202) {
                     $report->setAsVerified();
