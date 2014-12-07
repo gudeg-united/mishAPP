@@ -2,6 +2,7 @@
 
 use Rhumsaa\Uuid\Uuid;
 use Rhumsaa\Uuid\Exception\UnsatisfiedDependencyException;
+use Pubnub\Pubnub;
 
 class Controller_Base extends Controller_Template
 {
@@ -32,6 +33,8 @@ class Controller_Base extends Controller_Template
 
         // Set a global variable so views can use it
         View::set_global('user_uuid', $this->user_uuid);
+        
+        $this->template->footer = View::forge('footer');
     }
 
     /**
@@ -68,5 +71,10 @@ class Controller_Base extends Controller_Template
         $this->user_uuid = Cookie::get($this->user_cookie);
 
         return $this->user_uuid;
+    }
+
+    public function pubnub()
+    {
+        //return new Pubnub(Config::load('custom', 'pubnub')['pubnub']);
     }
 }

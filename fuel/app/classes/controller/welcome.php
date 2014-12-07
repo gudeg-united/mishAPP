@@ -32,7 +32,7 @@ class Controller_Welcome extends Controller_Base
     {
         $buttons = Model_Event::find('all');
         
-        $this->template->title = "Tips";
+        $this->template->title = "Home";
 		$this->template->content = View::forge('welcome/index', array('buttons' => $buttons));
     }
 
