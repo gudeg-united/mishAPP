@@ -1,3 +1,5 @@
+$('#buttons').hide();
+
 function geoSuccess(position) {
     $('#latitude').val(position.coords.latitude);
     $('#longitude').val(position.coords.longitude);
@@ -7,8 +9,9 @@ function geoSuccess(position) {
         $(this).attr('href', url);
     });
 
-    $('#buttons').show();
-    $('#messageButtons').hide();
+    $('.loading').fadeOut('normal', function() {
+        $('#buttons').fadeIn('normal');
+    });
 }
 
 function geoError() {
@@ -33,7 +36,6 @@ function getPosition() {
 }
 
 $(document).ready(function() {
-    $('#buttons').hide();
 
     getLocation();
 
