@@ -60,8 +60,8 @@ class Controller_Report extends Controller_Base
                 $this->verifyingReport($report);
             }
         }
-        
-        Response::redirect('/maps');        
+
+        Response::redirect('/disasters');
     }
 
     public function action_verifying()
@@ -73,7 +73,7 @@ class Controller_Report extends Controller_Base
                 array('created_at', ' >= ', date('Y-m-d H:i:s', $hour_ago)),
             ),
             'order_by' => array('created_at' => 'desc'),
-        ));     
+        ));
 
         if (!empty($reports)) {
             foreach ($reports as $report) {
