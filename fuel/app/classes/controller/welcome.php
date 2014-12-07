@@ -49,4 +49,28 @@ class Controller_Welcome extends Controller_Base
         $this->template->title = "Page Not Found";
         $this->template->content = Response::forge(Presenter::forge('welcome/404'), 404);
     }
+
+    /**
+     * Coming Soon
+     */
+    public function action_missing()
+    {
+        $this->template->title = "Missing People";
+		$this->template->content = View::forge('welcome/missing_people');
+    }
+
+    public function action_supplies()
+    {
+        $this->template->title = "Food Suply";
+		$this->template->content = View::forge('welcome/supplies');
+    }
+
+    /**
+     * About
+     */
+    public function action_about()
+    {
+        $this->template->title = "About";
+		$this->template->content = View::forge('welcome/about');
+    }
 }

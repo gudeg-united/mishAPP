@@ -3,8 +3,7 @@
     <div id="logo">
       <img src="/assets/img/logo.png" />
     </div>
-    <h1 class="text-center">
-      <?php echo $title; ?><small>We can't find that! <a href="/">back</a></small>
-    </h1>
+    <h1 class="text-center">Food Supplies</h1>
+    <p class="text-center">Coming Soon</p>
   </div>
 </div>
