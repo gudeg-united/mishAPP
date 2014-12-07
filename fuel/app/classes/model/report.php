@@ -40,6 +40,19 @@ class Model_Report extends \Orm\Model
         $latitude = $record->latitude;
         $longitude = $record->longitude;
 
+        return $this->findNearByReport($longitude, $latitude, $radius, $record->event_id);
+    }
+
+    /**
+     * Find near report by community
+     * @param  decimal $longitude longitude position
+     * @param  decimal $latitude  latitude position
+     * @param  int     $radius    Range from current position
+     * @param  int     $event_id  Type of event
+     * @return object
+     */
+    public function findNearByReport($longitude, $latitude, $radius, $event_id)
+    {
         $query = 'SELECT 
                     id,
                     event_id,
@@ -57,7 +70,7 @@ class Model_Report extends \Orm\Model
         $reports = DB::query($query)->param('longitude', $longitude)
                                   ->param('latitude', $latitude)
                                   ->param('radius', $radius)
-                                  ->param('event', $record->event_id)
+                                  ->param('event', $event_id)
                                   ->execute();
 
         return $reports;

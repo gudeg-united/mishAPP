@@ -1,6 +1,6 @@
 <?php
 
-class Controller_Disasters extends Controller_Template
+class Controller_Disasters extends Controller_Base
 {
 
     public function action_index()
@@ -20,7 +20,11 @@ class Controller_Disasters extends Controller_Template
         $this->template->title = "Disaster Detail";
         
         if ($request->status_code < 202) {
-            $this->template->content = View::forge('disaster/detail', array('disaster' => $request->body));
+            $disaster = json_decode($request->body);
+            list($long, $lat) = $disaster->geometry->coordinates;
+            $event = Model_Event::find_by_name(ucfirst(strtolower($disaster->properties->type)));
+            $community_report = Model_Report::forge()->findNearByReport($long, $lat, 5, $event->id);
+            $this->template->content = View::forge('disaster/detail', array('disaster' => $disaster, 'community_report' => $community_report));
         } else {
             Response::redirect('/maps');
         }
