@@ -9,14 +9,8 @@
   <body>
     <div id="mapbg"></div>
     <div id="wrapper">
-      <div class="row">
-        <div class="columns">
-          <?php echo $content; ?>
-          <div class="home-footer">
-            <?php echo $footer; ?>
-          </div>
-        </div>
-      </div>
+      <?php echo $content; ?>
+      <?php echo $footer; ?>
     </div>
     <?php echo Asset::js('all.js'); ?>
     <?php echo Asset::js('gmap3.js'); ?>
