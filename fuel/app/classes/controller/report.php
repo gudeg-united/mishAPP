@@ -46,6 +46,7 @@ class Controller_Report extends Controller_Base
         $new->latitude = $get['lat'];
         $new->event_id = $get['type'];
         $new->is_valid = false;
+        $new->is_verify = false;
         $new->uid = $this->getUserUuid();
 
         $new->save();
