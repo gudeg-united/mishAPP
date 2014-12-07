@@ -4,7 +4,7 @@
       <a href="/">Home</a>
     </li>
     <li>
-      <a href="#">Latest disasters at my location</a>
+      <a id="disaster-nearby" href="<?php echo Uri::create('disasters/nearby'); ?>">Latest disasters at my location</a>
     </li>
     <li>
       <a href="#">Survival tips</a>

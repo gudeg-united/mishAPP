@@ -5,10 +5,12 @@ function geoSuccess(position) {
     $('#longitude').val(position.coords.longitude);
 
     $('.report-disaster').each(function() {
-        var url = $(this).attr('href') + '&long=' + position.coords.longitude + '&lat=' + position.coords.latitude;
-        $(this).attr('href', url);
+        if ($(this).hasClass('enabled')) {
+            var url = $(this).attr('href') + '&long=' + position.coords.longitude + '&lat=' + position.coords.latitude;
+            $(this).attr('href', url);
+        }
     });
-
+    $('#disaster-nearby').attr('href', $('#disaster-nearby').attr('href') + '?long=' + position.coords.longitude + '&lat=' + position.coords.latitude);
     $('.loading').fadeOut('normal', function() {
         $('#buttons').fadeIn('normal');
     });
