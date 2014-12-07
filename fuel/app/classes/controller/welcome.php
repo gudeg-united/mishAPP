@@ -44,6 +44,9 @@ class Controller_Welcome extends Controller_Base
      */
     public function action_404()
     {
-        return Response::forge(Presenter::forge('welcome/404'), 404);
+        $buttons = Model_Event::find('all');
+
+        $this->template->title = "Page Not Found";
+        $this->template->content = Response::forge(Presenter::forge('welcome/404'), 404);
     }
 }
