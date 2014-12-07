@@ -22,9 +22,7 @@ class EventSeeder
         try {
             $event_types = array('Earthquake'
                                 ,'Flood'
-                                ,'Hurricane'
-                                ,'Nuclear'
-                                ,'Tornado'
+                                ,'Storm'
                                 ,'Tsunami'
                                 ,'Volcano'
                                 ,'Wildfire');
@@ -32,6 +30,7 @@ class EventSeeder
             foreach ($event_types as $name) {
                 $event = \Model_Event::forge(array(
                     'name' => $name,
+                    'is_available' => true,
                 ));
                 $event->save();
             }
