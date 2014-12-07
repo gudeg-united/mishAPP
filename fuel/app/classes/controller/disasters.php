@@ -46,4 +46,27 @@ class Controller_Disasters extends Controller_Base
             Response::redirect('/disasters');
         }
     }
+
+    public function action_nearby($page=1)
+    {
+        $get = Input::get(array('long', 'lat'));
+        $query = Uri::build_query_string(
+            array('page' => $page),
+            array('per_page' => 10),
+            array('lon' => $get['long']),
+            array('lat' => $get['lat']),
+            array('radius' => 100000)
+        );
+
+        $headers = array('Accept' => 'application/json');
+        $request = Requests::get(Config::get('mishapp.api_host') . '/disasters/nearby?' . $query, $headers);
+        $this->template->title = "Disaster Nearby";
+
+        if ($request->status_code < 202) {
+            $disaster = json_decode($request->body);
+            $this->template->content = View::forge('disaster/nearby', array('disaster' => $disaster));
+        } else {
+            Response::redirect('/disasters');
+        }
+    }
 }
