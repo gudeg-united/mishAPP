@@ -8,7 +8,7 @@ class Alter_events
 	{
 		\DBUtil::modify_fields('events', array(
         'created_at' => array('type' => 'timestamp', 'default' => \DB::expr('CURRENT_TIMESTAMP')),
-        'updated_at' => array('type' => 'timestamp', 'default' => \DB::expr('CURRENT_TIMESTAMP')),
+        'updated_at' => array('type' => 'datetime'),
     ));
 	}
 
