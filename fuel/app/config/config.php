@@ -312,6 +312,6 @@ return array(
     ),
 
     'mishapp' => array(
-        'api_host' => 'http://192.168.0.106:5000'
+        'api_host' => 'http://mishapp.blackbiron.koding.io:5000'
     )
 );
