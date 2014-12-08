@@ -62,7 +62,7 @@ class Controller_Report extends Controller_Base
             }
         }
 
-        Response::redirect('/disasters?type='.$_GET['type']);
+        Response::redirect('/disasters/tips?type='.$_GET['type']);
     }
 
     public function action_verifying()

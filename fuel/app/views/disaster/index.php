@@ -24,7 +24,8 @@
               <tr>
                 <td><?php echo $item->properties->type; ?></td>
                 <td>
-                  <a href="<?php echo Uri::create('disasters/detail', array(), array('id' => $item->id, 'type' => $item->properties->type)); ?>">
+                  <a href="<?php echo Uri::create('disasters/detail', array(), array('id' => $item->id)); ?>">
+
                     <?php echo isset($item->properties->title) ? $item->properties->title : $item->properties->country; ?>
                   </a>
                 </td>
