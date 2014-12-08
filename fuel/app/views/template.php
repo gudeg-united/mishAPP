@@ -5,6 +5,7 @@
     <title>MishApp - <?php echo $title; ?></title>
     <?php echo Asset::css('all.css'); ?>
     <script src="http://maps.google.com/maps/api/js?sensor=false&amp;amp;language=en" type="text/javascript" data-turbolinks-track="true"></script>
+    <script src="http://cdn.pubnub.com/pubnub.min.js"></script>
 </head>
 <body>
     <div id="mapbg"></div>
