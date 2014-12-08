@@ -41,7 +41,7 @@ class Controller_Disasters extends Controller_Base
             list($long, $lat) = $disaster->geometry->coordinates;
             $event = Model_Event::find_by_name(ucfirst(strtolower($disaster->properties->type)));
             $community_report = Model_Report::forge()->findNearByReport($long, $lat, 5, $event->id);
-            $this->template->content = View::forge('disaster/detail', array('disaster' => $disaster, 'community_report' => $community_report));
+            $this->template->content = View::forge('disaster/detail', array('disaster' => $disaster, 'community_report' => $community_report, 'event' => $event));
         } else {
             Response::redirect('/disasters');
         }
