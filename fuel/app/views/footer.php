@@ -7,7 +7,7 @@
       <a id="disaster-nearby" href="<?php echo Uri::create('disasters/nearby'); ?>">Latest disasters at my location</a>
     </li>
     <li>
-      <a href="#">Survival tips</a>
+      <a href="<?php echo Uri::create('disasters/tips'); ?>">Survival tips</a>
     </li>
     <li>
       <a href="<?php echo Uri::create('missing'); ?>">Missing people</a>
