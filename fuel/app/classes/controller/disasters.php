@@ -6,7 +6,7 @@ class Controller_Disasters extends Controller_Base
     public function action_index($page=1)
     {
         $get = Input::get(array('page'));
-        
+
         if (isset($get['page']))
             $page = $get['page'];
 
@@ -64,7 +64,7 @@ class Controller_Disasters extends Controller_Base
 
         if ($request->status_code < 202) {
             $disaster = json_decode($request->body);
-            $this->template->content = View::forge('disaster/nearby', array('disaster' => $disaster));
+            $this->template->content = View::forge('disaster/nearby', array('disaster' => $disaster, 'latitude'=>$get['lat'], 'longitude'=>$get['long']));
         } else {
             Response::redirect('/disasters');
         }
