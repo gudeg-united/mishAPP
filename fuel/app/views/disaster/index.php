@@ -23,7 +23,11 @@
             <?php foreach ($disaster->items as $item): ?>
               <tr>
                 <td><?php echo $item->properties->type; ?></td>
-                <td><?php echo isset($item->properties->title) ? $item->properties->title : $item->properties->country; ?></td>
+                <td>
+                  <a href="<?php echo Uri::create('disasters/detail', array(), array('id' => $item->id)); ?>">
+                    <?php echo isset($item->properties->title) ? $item->properties->title : $item->properties->country; ?>
+                  </a>
+                </td>
                 <td><?php echo isset($item->properties->mag) ? $item->properties->mag : ''; ?></td>
                 <td><?php echo isset($item->properties->tsunami) ? $item->properties->tsunami : '-'; ?></td>
                 <td>
