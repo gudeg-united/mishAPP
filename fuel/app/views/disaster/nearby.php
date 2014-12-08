@@ -41,12 +41,12 @@
             <?php endforeach; ?>
           </tbody>
         </table>
-        <div class="pagination">
-        <?php #echo $pagination->render(); ?>
-        </div>
       </div>
     </div>
   </div>
 <script type="text/javascript">
   var values = <?php echo json_encode($values); ?>;
+  <?php #list($lon, $lat) = $disaster->geometry->coordinates; ?>
+  var customLat = '<?php echo $latitude; ?>';
+  var customLon = '<?php echo $longitude; ?>';
 </script>
