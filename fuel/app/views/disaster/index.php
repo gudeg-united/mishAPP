@@ -45,7 +45,7 @@
           </tbody>
         </table>
         <div class="pagination">
-        <?php #echo $pagination->render(); ?>
+        <?php echo Pagination::instance('mypagination'); ?>
         </div>
       </div>
     </div>
