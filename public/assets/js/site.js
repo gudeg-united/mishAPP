@@ -103,7 +103,13 @@
 
   initMap = function() {
     var map, mapOptions, marker, myLatlng;
-    myLatlng = new google.maps.LatLng(-6.204808, 107.014730);
+
+    if ((typeof customLon != 'undefined') && (typeof customLat != 'undefined')) {
+      myLatlng = new google.maps.LatLng(customLat, customLon);  
+    } else {
+      myLatlng = new google.maps.LatLng(-6.204808, 107.014730);
+    }
+    
     mapOptions = {
       zoom: 15,
       center: myLatlng,

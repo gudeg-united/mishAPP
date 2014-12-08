@@ -7,8 +7,21 @@
                     <?php echo ucfirst(strtolower($disaster->properties->type)); ?>
                 </h1>
                 <h2>
-                    <?php echo (isset($disaster->properties->country)) ? ucfirst(strtolower($disaster->properties->country)) . ', ': '' ; ?>
-                    <?php echo date('M dS, Y h:i A', strtotime($disaster->properties->date)); ?>
+                    <?php if (isset($disaster->properties->country)) : ?>
+                        <?php echo ucfirst(strtolower($disaster->properties->country)); ?>
+                    <?php elseif (isset($disaster->properties->place)) : ?>
+                        <?php echo $disaster->properties->place; ?>
+                    <?php else: ?>
+
+                    <?php endif; ?>
+                    
+                    <?php if (isset($disaster->properties->date)) : ?>
+                        <?php echo date('M dS, Y h:i A', strtotime($disaster->properties->date)); ?>
+                    <?php elseif (isset($disaster->properties->time)): ?>
+                        <?php echo date('M dS, Y h:i A', $disaster->properties->time); ?>
+                    <?php else: ?>
+
+                    <?php endif; ?>
                 </h2>
                 <a class="button radius small" href="survival.html">Survival Tips</a>
                 <h3>
@@ -30,7 +43,14 @@
                             <?php foreach ($community_report as $report) : ?>
                                 <tr>
                                     <td>
-                                        127.0.0.1 <span class="label radius">this is you</span> <span class="label radius alert">not varified</span>
+                                        <?php echo long2ip($report->ip_address) ?>
+                                        <?php if ($report->uid == $this->getUserUuid()) : ?>
+                                            <span class="label radius">this is you</span>
+                                        <?php endif; ?>
+
+                                        <?php if (!$report->is_verify) : ?>
+                                            <span class="label radius alert">not verified</span>
+                                        <?php endif; ?>
                                     </td>
                                     <td>
                                         <?php echo date('M dS, Y h:i A', strtotime($report->created_at)); ?>
@@ -50,3 +70,8 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    <?php list($lon, $lat) = $disaster->geometry->coordinates; ?>
+    var customLat = '<?php echo $lat; ?>';
+    var customLon = '<?php echo $lon; ?>';
+</script>
