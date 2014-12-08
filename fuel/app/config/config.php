@@ -299,7 +299,7 @@ return array(
          * If you don't want the config in a group use null as groupname.
          */
         // 'config'  => array(),
-
+    
         /**
          * Language files to autoload
          *
@@ -312,6 +312,6 @@ return array(
     ),
 
     'mishapp' => array(
-        'api_host' => 'http://127.0.0.1:5000'
+        'api_host' => 'http://mishapp.blackbiron.koding.io:5000'
     )
 );
