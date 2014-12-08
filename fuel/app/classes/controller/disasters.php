@@ -81,7 +81,11 @@ class Controller_Disasters extends Controller_Base
 
     public function action_tips()
     {
-        $data['tips'] = Model_Tip::find('all');
+        if(isset($_GET['type']) && !empty($_GET['type']))
+            $data['tips'] = Model_Tip::find_by_id($_GET['type']);
+        else
+            $data['tips'] = Model_Tip::find('all');
+
         $data['event'] = function($show = "name", $events = array()){
             return $this->event($show, $events);
         };
