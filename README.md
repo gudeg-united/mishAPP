@@ -14,8 +14,8 @@ We also provide simple tips for each disaster event, currently this app could on
 
 Some screenshots for our web app :
 
-![Homepage](https://www.dropbox.com/s/vmblrpxk7ankrz9/Screenshot%202014-12-08%2014.40.49.png "Homepage")
-![Global Disaster Map](https://www.dropbox.com/s/ejgen1n3ofbphpx/Screenshot%202014-12-08%2014.41.17.png "Global Disaster Map")
+![Homepage](/images/mishap-home.png?raw=true "Homepage")
+![Global Disaster Map](/images/mishap-global.png?raw=true "Global Disaster Map")
 
 ## APIs used
 
