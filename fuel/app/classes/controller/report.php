@@ -47,6 +47,7 @@ class Controller_Report extends Controller_Base
         $new->event_id = $get['type'];
         $new->is_valid = false;
         $new->is_verify = false;
+        $new->ip_address = ip2long(Input::ip());
         $new->uid = $this->getUserUuid();
 
         $new->save();
