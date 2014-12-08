@@ -65,9 +65,17 @@ $(document).ready(function() {
             }
 
             var messageText = 'Warning disaster at ' + messageCity;
-            var message = '<a href="http://http://mishapp.blackbiron.koding.io/disasters/detail?id=' + msg.id + '">' + messageText + '</a>';
+            var messageUrl = 'http://mishapp.blackbiron.koding.io/disasters/detail?id=' + msg.id;
 
-            var n = new Notification("mishAPP Disaster Alert!!", {body: messageText});
+            var n = new Notification("mishAPP Disaster Alert!!", {
+                body: messageText,
+                icon: 'http://mishapp.blackbiron.koding.io/apple-touch-icon-144x144-precomposed.png',
+            });
+
+            n.onclick = function() {
+                console.log(messageUrl);
+                // window.open(messageUrl);
+            };
         }
     });    
 });
