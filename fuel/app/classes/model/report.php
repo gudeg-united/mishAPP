@@ -12,7 +12,7 @@ class Model_Report extends \Orm\Model
         'created_at',
         'is_valid',
         'is_verify',
-        'location',
+        'ip_address',
     );
 
     protected static $_observers = array(
