@@ -23,7 +23,7 @@
 
                     <?php endif; ?>
                 </h2>
-                <a class="button radius small" href="survival.html">Survival Tips</a>
+                <a class="button radius small" href="<?php echo Uri::create('/disasters/tips', array(), array('type' => $event->id)); ?>">Survival Tips</a>
                 <h3>
                     Community's reports
                 </h3>
