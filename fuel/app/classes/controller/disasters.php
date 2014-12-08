@@ -69,4 +69,24 @@ class Controller_Disasters extends Controller_Base
             Response::redirect('/disasters');
         }
     }
+
+    private function event($show = "show", $events = array())
+    {
+        if(is_array($events)){
+            foreach($events as $event){
+                return $event->{$show};
+            }
+        }
+    }
+
+    public function action_tips()
+    {
+        $data['tips'] = Model_Tip::find('all');
+        $data['event'] = function($show = "name", $events = array()){
+            return $this->event($show, $events);
+        };
+
+        $this->template->title = 'Disaster &raquo; Tips';
+        $this->template->content = View::forge('disaster/tips', $data);
+    }
 }
