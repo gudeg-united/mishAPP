@@ -47,4 +47,27 @@ $(document).ready(function() {
         // // window.location.href = url;
         // return false;
     });
+
+    Notification.requestPermission( function(status) {
+
+    });
+    PUBNUB.init({
+        subscribe_key: 'sub-c-40e909a0-7dff-11e4-bfb6-02ee2ddab7fe'
+    }).subscribe({
+        channel : 'globaldisaster',
+        message : function(msg) {
+            if (typeof msg.properties.place != 'undefined') {
+                var messageCity = msg.properties.place;
+            } else if (typeof msg.properties.country != 'undefined') {
+                var messageCity = msg.properties.country;
+            } else {
+                var messageCity = 'unknown place';
+            }
+
+            var messageText = 'Warning disaster at ' + messageCity;
+            var message = '<a href="http://http://mishapp.blackbiron.koding.io/disasters/detail?id=' + msg.id + '">' + messageText + '</a>';
+
+            var n = new Notification("mishAPP Disaster Alert!!", {body: messageText});
+        }
+    });    
 });
