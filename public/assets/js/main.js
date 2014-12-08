@@ -73,8 +73,7 @@ $(document).ready(function() {
             });
 
             n.onclick = function() {
-                console.log(messageUrl);
-                // window.open(messageUrl);
+                window.open(messageUrl);
             };
         }
     });    
