@@ -105,11 +105,11 @@
     var map, mapOptions, marker, myLatlng;
 
     if ((typeof customLon != 'undefined') && (typeof customLat != 'undefined')) {
-      myLatlng = new google.maps.LatLng(customLat, customLon);  
+      myLatlng = new google.maps.LatLng(customLat, customLon);
     } else {
       myLatlng = new google.maps.LatLng(-6.204808, 107.014730);
     }
-    
+
     mapOptions = {
       zoom: 15,
       center: myLatlng,
@@ -214,7 +214,11 @@
 
   globalMap = function() {
     var map, mapOptions, marker, myLatlng, markers=[];
-    myLatlng = new google.maps.LatLng(-6.204808, 107.014730);
+    if ((typeof customLon != 'undefined') && (typeof customLat != 'undefined')) {
+      myLatlng = new google.maps.LatLng(customLat, customLon);
+    } else {
+      myLatlng = new google.maps.LatLng(-6.204808, 107.014730);
+    }
     mapOptions = {
       zoom: 2,
       center: myLatlng,
@@ -310,6 +314,13 @@
       ]
     };
     map = new google.maps.Map(document.getElementById('map-global'), mapOptions);
+
+    marker = new RichMarker({
+      position: myLatlng,
+      map: map,
+      content: '<div class="map-pin"></div>'
+    });
+
     for (i = 0; i < values.length; i++) {
       marker = new RichMarker({
         position: new google.maps.LatLng(values[i][0], values[i][1]),
