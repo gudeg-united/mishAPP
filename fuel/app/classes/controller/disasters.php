@@ -5,21 +5,21 @@ class Controller_Disasters extends Controller_Base
 
     public function action_index($page=1)
     {
+        $get = Input::get(array('page'));
+        
+        if (isset($get['page']))
+            $page = $get['page'];
+
         $headers = array('Accept' => 'application/json');
-        // $result = Requests::get('http://127.0.0.1:5000/disasters?page=' . $page . '&per_page=10');
-        // die(var_dump(Config::get('mishapp.api_host') . '/disasters/?page=' . $page . '&per_page=10'));
         $result = Requests::get(Config::get('mishapp.api_host') . '/disasters?page=' . $page . '&per_page=10', $headers);
         $data['disaster'] = json_decode($result->body);
-        // die(var_dump($data['disaster']));
         $this->template->title = "Disaster Global";
-        $pagination = Pagination::forge('mypagination', array(
-            'pagination_url' => null,
-            'uri_segment' => 3,
+        $data['pagination'] = Pagination::forge('mypagination', array(
+            'pagination_url' => Uri::create('/disasters/index'),
+            'uri_segment' => 'page',
             'total_items' => $data['disaster']->meta->total,
             'per_page' => $data['disaster']->meta->per_page,
         ));
-
-
 
         $this->template->title = 'Disaster &raquo; Global';
         $this->template->content = View::forge('disaster/index', $data );
