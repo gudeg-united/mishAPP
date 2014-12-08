@@ -33,7 +33,7 @@
                                         127.0.0.1 <span class="label radius">this is you</span> <span class="label radius alert">not varified</span>
                                     </td>
                                     <td>
-                                        10:30PM
+                                        <?php echo date('M dS, Y h:i A', strtotime($report->created_at)); ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
