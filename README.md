@@ -15,7 +15,7 @@ We also provide simple tips for each disaster event, currently this app could on
 Some screenshots for our web app :
 
 ![Homepage](/images/mishap-home.png?raw=true "Homepage")
-![Global Disaster Map](/images/mishap-global.png?raw=true "Global Disaster Map")
+![Global Disaster Map](/images/mishapp-global.png?raw=true "Global Disaster Map")
 
 ## APIs used
 
